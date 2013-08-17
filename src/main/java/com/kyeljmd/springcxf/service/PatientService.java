@@ -25,6 +25,6 @@ public interface PatientService {
 	
 	@Path("/add")
 	@POST
-	String addPatient(@FormParam("") Patient patient);
+	Patient addPatient(@FormParam("") Patient patient);
 
 }
