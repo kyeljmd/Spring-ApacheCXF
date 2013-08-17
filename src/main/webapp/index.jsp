@@ -20,7 +20,7 @@
 		</form>
 		<br>
 		<div>
-		Api Calls and Api Result from the above form will be shown here <br>
+		Api Calls Being Made and their results <br>
 		Api Call : <code id ="apiCall"> </code> <br>
 		Result :   <code id = "apiCallResult"> </code>
 		</div>
@@ -56,18 +56,23 @@
 			$("#patientForm").on('submit',function(e){
 				e.preventDefault();
 				
+				$("#apiCall").append('');
+				$("#apiCallResult").html('');
+				
 				var data = $(this).serialize();
 				var url = $(this).attr('action');
-				
+					
 				$.post(url,data,function(data){
 					var patientId = "<td>"+data.patienId+"</td>";
 					var patientFirstName = "<td>"+data.patientFirstName+"</td>";
 					var patientLastName = "<td>"+data.patientLastName+"</td>";
 					var tableData ="<tr>"+patientId+patientFirstName+patientLastName+"</tr>";
 					$("#patients").append(tableData);
-				})
+					$("#apiCall").html(url);
+					$("#apiCallResult").html(JSON.stringify(data));
+				});
 				
-
+				
 				$(this).trigger("reset");
 			})
 			
