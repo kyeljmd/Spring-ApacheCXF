@@ -3,6 +3,8 @@ Spring-ApacheCXF
 
 A Sample Web Service using Apache CXF (JAX-RS) with Spring Framework.
 
+We used GSON to convert objects into JSON format
+
 To View the Available Services of The Application
 
 http://localhost:8080/SpringCxf/api/
