@@ -1,8 +1,5 @@
 package com.kyeljmd.springcxf.service.impl;
 
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,9 +23,9 @@ public class PatientServiceImpl  implements PatientService{
 		}
 	}
 
-	public String addPatient(Patient patient) {
+	public Patient addPatient(Patient patient) {
 		Patient res = patientRepo.addPatient(patient);
-		return new Gson().toJson(res);
+		return res;
 	}
 
 	@Override
