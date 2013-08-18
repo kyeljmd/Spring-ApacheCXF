@@ -8,7 +8,7 @@ public interface PatientRepo {
 	
 	Patient getPatient(Long id);
 	
-	void delete(Patient patient);
+	void delete(Long id);
 	
 	Patient addPatient(Patient patient);
 	

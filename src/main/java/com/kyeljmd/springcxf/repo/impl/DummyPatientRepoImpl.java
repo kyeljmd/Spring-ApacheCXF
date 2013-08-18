@@ -49,8 +49,8 @@ public class DummyPatientRepoImpl implements PatientRepo{
 	}
 
 	@Override
-	public void delete(Patient patient) {
-		patients.remove(patient.getPatienId());
+	public void delete(Long id) {
+		patients.remove(id);
 	}
 
 	@Override
