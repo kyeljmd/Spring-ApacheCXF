@@ -1,6 +1,8 @@
 package com.kyeljmd.springcxf.service;
 
 
+import java.util.List;
+
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -18,12 +20,12 @@ import com.kyeljmd.springcxf.model.Patient;
 public interface PatientService {
 	
 	@GET
-	String getPatients();
+	List<Patient> getPatients();
 	
 	@GET
 	@Path("/get/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	String getPatient(@PathParam("id") Long id);
+	Patient getPatient(@PathParam("id") Long id);
 	
 	@POST
 	@Path("/add")
