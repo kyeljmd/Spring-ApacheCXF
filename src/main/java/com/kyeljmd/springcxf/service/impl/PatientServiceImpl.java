@@ -1,12 +1,13 @@
 package com.kyeljmd.springcxf.service.impl;
 
+import java.util.List;
+
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.google.gson.Gson;
 import com.kyeljmd.springcxf.model.Patient;
 import com.kyeljmd.springcxf.repo.PatientRepo;
 import com.kyeljmd.springcxf.service.PatientService;
@@ -18,13 +19,8 @@ public class PatientServiceImpl  implements PatientService{
 	@Autowired
 	private PatientRepo patientRepo;
 
-	public String getPatient(Long id) {
-		Patient patient = patientRepo.getPatient(id);
-		if (patient != null) {
-			return new Gson().toJson(patient);
-		} else {
-			return "";
-		}
+	public Patient getPatient(Long id) {
+		return patientRepo.getPatient(id);
 	}
 
 	public Patient addPatient(Patient patient) {
@@ -33,8 +29,8 @@ public class PatientServiceImpl  implements PatientService{
 	}
 
 	@Override
-	public String getPatients() {
-		return new Gson().toJson(patientRepo.getPatients());
+	public List<Patient> getPatients() {
+		return patientRepo.getPatients();
 	}
 
 	@Override
