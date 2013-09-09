@@ -23,9 +23,9 @@ public class DummyPatientRepoImpl implements PatientRepo{
 		Patient patientTwo = new Patient();
 		Patient patientThree = new Patient();
 
-		patientOne.setPatienId(1L);
-		patientTwo.setPatienId(2L);
-		patientThree.setPatienId(3L);
+		patientOne.setPatientId(1L);
+		patientTwo.setPatientId(2L);
+		patientThree.setPatientId(3L);
 
 		patientOne.setPatientFirstName("Kyel");
 		patientOne.setPatientLastName("David");
@@ -39,9 +39,9 @@ public class DummyPatientRepoImpl implements PatientRepo{
 		patientThree.setPatientLastName("Domingo");
 		patientThree.setPhoneNumber("555-5555");
 
-		patients.put(patientOne.getPatienId(), patientOne);
-		patients.put(patientTwo.getPatienId(), patientTwo);
-		patients.put(patientThree.getPatienId(), patientThree);
+		patients.put(patientOne.getPatientId(), patientOne);
+		patients.put(patientTwo.getPatientId(), patientTwo);
+		patients.put(patientThree.getPatientId(), patientThree);
 	}
 
 	public Patient getPatient(Long id) {
@@ -55,10 +55,10 @@ public class DummyPatientRepoImpl implements PatientRepo{
 
 	@Override
 	public Patient addPatient(Patient patient) {
-		if (patient.getPatienId() == null) {
-			patient.setPatienId(nextId());
+		if (patient.getPatientId() == null) {
+			patient.setPatientId(nextId());
 		}
-		patients.put(patient.getPatienId(), patient);
+		patients.put(patient.getPatientId(), patient);
 		return patient;
 	}
 

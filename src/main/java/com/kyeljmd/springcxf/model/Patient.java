@@ -2,24 +2,26 @@ package com.kyeljmd.springcxf.model;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Patient implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7393320017378010427L;
-	private Long patienId;
+
+	private Long patientId;
 	private String patientFirstName;
 	private String patientLastName;
 	private String phoneNumber;
-	
-	public Long getPatienId() {
-		return patienId;
+		
+	public Long getPatientId() {
+		return patientId;
 	}
-	
-	public void setPatienId(Long patienId) {
-		this.patienId = patienId;
+	public void setPatientId(Long patientId) {
+		this.patientId = patientId;
 	}
-	
 	public String getPatientFirstName() {
 		return patientFirstName;
 	}

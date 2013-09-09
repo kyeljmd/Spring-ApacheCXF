@@ -8,6 +8,7 @@
 			<input type = "text" name = "patientId" placeholder = "Patient Id" /><br/>
 			<input type = "text" name = "patientFirstName" placeholder = "Patient first Name"/><br/>
 			<input type = "text" name = "patientLastName" placeholder = "Patient Last name"/><br/>
+            <input type = "text" name = "phoneNumber" placeholder = "Patient Last name"/><br/>
 			<input type ="submit"/>
 		</fieldset>
 	</form>
@@ -37,6 +38,24 @@
 	</div>
 	<script src ="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script>
+	$.fn.serializeObject = function()
+	{
+	    var o = {};
+	    var a = this.serializeArray();
+	    $.each(a, function() {
+	        if (o[this.name] !== undefined) {
+	            if (!o[this.name].push) {
+	                o[this.name] = [o[this.name]];
+	            }
+	            o[this.name].push(this.value || '');
+	        } else {
+	            o[this.name] = this.value || '';
+	        }
+	    });
+	    return o;
+	}
+	</script>
+	<script>
 		$(function(e){
 			
 			$.get('api/sampleemr/patient/', function(data) {
@@ -44,7 +63,7 @@
 				var tableData = "";
 				
 				for(var indice in data){
-					var patientId = "<td>"+data[indice].patienId+"</td>";
+					var patientId = "<td>"+data[indice].patientId+"</td>";
 					var patientFirstName = "<td>"+data[indice].patientFirstName+"</td>";
 					var patientLastName = "<td>"+data[indice].patientLastName+"</td>";
 					tableData+="<tr>"+patientId+patientFirstName+patientLastName+"</tr>";
@@ -59,19 +78,25 @@
 				$("#apiCall").append('');
 				$("#apiCallResult").html('');
 				
-				var data = $(this).serialize();
+				var data = $(this).serializeObject();
 				var url = $(this).attr('action');
-					
-				$.post(url,data,function(data){
-					var patientId = "<td>"+data.patienId+"</td>";
-					var patientFirstName = "<td>"+data.patientFirstName+"</td>";
-					var patientLastName = "<td>"+data.patientLastName+"</td>";
-					var tableData ="<tr>"+patientId+patientFirstName+patientLastName+"</tr>";
-					$("#patients").append(tableData);
-					$("#apiCall").html(url);
-					$("#apiCallResult").html(JSON.stringify(data));
-				});
 				
+				var strData =JSON.stringify(data);
+				$.ajax({
+		                type: "POST",
+		                url: url,
+		                data: strData,	
+		                contentType: "application/json",
+		                dataType: "json",
+		                success: function (msg) {
+		                    alert('success');
+		                },
+		                error:function(x,e){
+		                    if(x.status==0){
+		                        alert('error 0');
+		                    }
+		                }
+		            });
 				
 				$(this).trigger("reset");
 			})

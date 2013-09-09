@@ -3,6 +3,7 @@ package com.kyeljmd.springcxf.service;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -29,7 +30,8 @@ public interface PatientService {
 	
 	@POST
 	@Path("/add")
-	Patient addPatient(@FormParam("") Patient patient);
+	@Consumes(MediaType.APPLICATION_JSON)
+	Patient addPatient(Patient patient);
 	
 	@DELETE
 	@Path("/delete/{id")
